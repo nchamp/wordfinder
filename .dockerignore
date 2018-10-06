@@ -1,0 +1,12 @@
+.git/
+test/
+vendor/
+.gitignore
+.idea
+codeception.yml
+.DS_Store
+Dockerfile*
+docker-compose*
+composer.phar
+Makefile
+README.md

@@ -1,0 +1,33 @@
+{
+	"name" : "nchamp/wordfinder",
+	"description": "Word Finder - customer fingerprint digest service",
+	"type" : "project",
+	"license": "MIT",
+	"keywords" : [
+		"word",
+		"finder",
+		"dictionary",
+		""
+	],
+	"authors" : [
+		{
+			"name" : "Nicholas Potesta"
+		}
+	],
+	"require" : {
+		"marc-mabe/php-enum": "~2.0",
+		"monolog/monolog": "~1.22",
+		"php": ">=7.0"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : "@stable",
+		"codeception/codeception": "@stable",
+		"phalcon/devtools": "3.1.*",
+		"phalcon/incubator" : "3.1.*"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Wordfinder\\" : "src/"
+		}
+	}
+}
