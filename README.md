@@ -1,15 +1,15 @@
-# Wordfinder
+# 📖 Wordfinder
 A small web service that performs word finding tasks!
 
 Includes functionality which will take a collection of letters (a-z) and return any words that can be built from the given letters.
 
-## Requirements
+## 👷‍♂️ Requirements
 + Docker (ver: `18.06.1+`)
 + PHP (ver: `7.0+`)
 
-## Setup
+## 🛠 Setup
 
-### Development Setup - Composer
+### 🎻 Development Setup - Composer
 
 To resolve the local dev dependencies, the following command can be run from the base directory of the project:
 
@@ -19,7 +19,7 @@ $> make configure
 
 This will install composer and resolve all development dependencies required.
 
-### Build - Docker Image
+### 🐳 Build - Docker Image
 
 The following command run from the base project directory will build and tag a `wordfinder:latest` docker image:
 
@@ -27,7 +27,13 @@ The following command run from the base project directory will build and tag a `
 $> make install
 ```
 
-## Tests
+## 📝 Tests
+
+To run the entire suite (both unit and API integration tests) run the following command from the base project directory:
+
+```bash
+$> make test
+```
 
 ### Running Test Suite (Unit)
 
@@ -39,7 +45,7 @@ To run the test suite locally, execute the following command from the base proje
 $> make test-unit
 ```
 
-### Running Test Suite (API)
+### Running Test Suite (API Integration)
 
 To run the api test suite locally, execute the following command from the base project directory:
 

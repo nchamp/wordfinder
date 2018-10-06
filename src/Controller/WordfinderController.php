@@ -2,13 +2,17 @@
 namespace Wordfinder\Controller;
 
 use Phalcon\Mvc\Controller,
-	Phalcon\Http\Response;
+	Phalcon\Http\Response,
+	Wordfinder\Entity\Dictionary\Dictionary,
+	Wordfinder\Entity\Matcher\WordLetterMatcher;
 
 /**
  * Wordfinder controller for any wordfinding specific functionality!
  *
  * @author Nicholas Potesta
  * @package Wordfinder
+ *
+ * @property \Wordfinder\Entity\Dictionary\DictionaryReaderInterface $dictionary_reader
  */
 class WordfinderController extends Controller {
 
@@ -20,8 +24,13 @@ class WordfinderController extends Controller {
 	 * @return Response
 	 */
 	public function find_words(string $letters) : Response {
-		//TODO: Implement logic...
+		$matcher = new WordLetterMatcher($letters);
 
-		return $this->response->setJsonContent(['stubbed', 'response', 'for', 'letters', $letters]);
+		$dictionary = new Dictionary(
+			$this->dictionary_reader,
+			$matcher
+		);
+
+		return $this->response->setJsonContent($dictionary->find_matching_words());
 	}
 }

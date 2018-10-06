@@ -33,22 +33,22 @@ class DictionaryFileReader implements DictionaryReaderInterface {
 	 */
 	public function get_matching_words(MatcherInterface $matcher) : array {
 		$handle = fopen($this->dictionary_location, 'r');
-
-		if ($handle) {
-			$matches = [];
-
-			while (($word = fgets($handle)) !== false) {
-				if ($matcher->is_match($word)) {
-					$matches[] = $word;
-				}
-			}
-
-			fclose($handle);
-
-			return $matches;
+		if (!$handle) {
+			throw new DictionaryNotFoundException("Unable to locate dictionary " .  $this->dictionary_location);
 		}
 
-		throw new DictionaryNotFoundException("Unable to locate dictionary " .  $this->dictionary_location);
+		$matches = [];
+		while (($word = fgets($handle)) !== false) {
+			$word = rtrim($word);
+
+			if ($matcher->is_match($word)) {
+				$matches[] = $word;
+			}
+		}
+
+		fclose($handle);
+
+		return $matches;
 	}
 
 }

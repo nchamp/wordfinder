@@ -4,12 +4,13 @@ namespace Wordfinder;
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
-use Monolog\Formatter\LineFormatter;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
-use Phalcon\Di\FactoryDefault;
-use Phalcon\Loader,
-	Wordfinder\Application\Wordfinder;
+use Monolog\Formatter\LineFormatter,
+	Monolog\Handler\StreamHandler,
+	Monolog\Logger,
+	Phalcon\Di\FactoryDefault,
+	Phalcon\Loader,
+	Wordfinder\Application\Wordfinder,
+	Wordfinder\Entity\Dictionary\DictionaryFileReader;
 
 /**
  * Bootstraps our Wordfinder application
@@ -31,6 +32,13 @@ class Bootstrap {
 			'url',
 			function () {
 				return new \Phalcon\Mvc\Url();
+			}
+		);
+
+		$di->set(
+			'dictionary_reader',
+			function () {
+				return new DictionaryFileReader();
 			}
 		);
 
