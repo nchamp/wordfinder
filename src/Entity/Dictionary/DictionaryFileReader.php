@@ -32,9 +32,13 @@ class DictionaryFileReader implements DictionaryReaderInterface {
 	 * @throws DictionaryNotFoundException
 	 */
 	public function get_matching_words(MatcherInterface $matcher) : array {
+		if (!file_exists($this->dictionary_location)) {
+			throw new DictionaryNotFoundException("Unable to locate dictionary: " .  $this->dictionary_location);
+		}
+
 		$handle = fopen($this->dictionary_location, 'r');
 		if (!$handle) {
-			throw new DictionaryNotFoundException("Unable to locate dictionary " .  $this->dictionary_location);
+			throw new DictionaryNotFoundException("Unable to read dictionary located at: " .  $this->dictionary_location);
 		}
 
 		$matches = [];

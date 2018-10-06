@@ -25,4 +25,4 @@ test-run-api:
 	@echo "Waiting for API to come up" && sleep 2
 	./vendor/bin/codecept run api
 
-test: test-unit test-api
+test: install composer-install configure docker-run docker-stop test-unit test-api test-run-api

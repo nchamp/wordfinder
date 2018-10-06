@@ -10,13 +10,7 @@ class WordfinderCest {
 		$I->seeResponseCodeIs(HttpCode::OK);
 		$I->seeResponseIsJson();
 		$I->seeResponseContains(
-			json_encode([
-				'stubbed',
-				'response',
-				'for',
-				'letters',
-				'dgo',
-			])
+			json_encode(["D","G","Gd","God","O","d","do","dog","g","go","god","o"])
 		);
 	}
 }

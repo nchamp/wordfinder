@@ -3,7 +3,7 @@ A small web service that performs word finding tasks!
 
 Includes functionality which will take a collection of letters (a-z) and return any words that can be built from the given letters.
 
-## 👷‍♂️ Requirements
+## 👷‍ Requirements
 + Docker (ver: `18.06.1+`)
 + PHP (ver: `7.0+`)
 

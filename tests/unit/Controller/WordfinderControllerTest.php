@@ -1,7 +1,9 @@
 <?php
 
 use Wordfinder\Controller\WordfinderController,
-	Phalcon\Http\Response;
+	Wordfinder\Entity\Dictionary\DictionaryReaderInterface,
+	Phalcon\Http\Response,
+	Phalcon\Di;
 
 /**
  * @author Nicholas Potesta
@@ -9,14 +11,42 @@ use Wordfinder\Controller\WordfinderController,
  */
 class WordfinderControllerTest extends WordfinderTestCase {
 	public function test_find_words() {
+		//mock the global dict reader dependency
+		$mock_dictionary_reader = $this->getMockBuilder(DictionaryReaderInterface::class)
+			->disableOriginalConstructor()
+			->getMock();
+
+		$mock_dictionary_reader->expects($this->once())
+			->method('get_matching_words')
+			->willReturn([
+				'foo',
+				'bar',
+				'biz',
+				'bang',
+			]);
+
+		$di = Di::getDefault();
+		$di->set('dictionary_reader', function () use ($mock_dictionary_reader) {
+			return $mock_dictionary_reader;
+		});
+
+		$this->setDi($di);
+
+		Di::setDefault($di);
+
 		$mock_response = $this->getMockBuilder(\Phalcon\Http\Response::class)
 			->disableOriginalConstructor()
 			->getMock();
 
-		$test_input = 'qwerty';
+		$test_input = 'foobarbizbang';
 
 		$expected_response = new Response();
-		$expected_response->setJsonContent(['stubbed', 'response', 'for', 'letters', $test_input]);
+		$expected_response->setJsonContent([
+			'foo',
+			'bar',
+			'biz',
+			'bang',
+		]);
 
 		$mock_response->expects($this->once())
 			->method('setJsonContent')
