@@ -1,13 +1,12 @@
 {
 	"name" : "nchamp/wordfinder",
-	"description": "Word Finder - customer fingerprint digest service",
+	"description": "Wordfinder - Microservice for finding all the words!",
 	"type" : "project",
 	"license": "MIT",
 	"keywords" : [
 		"word",
 		"finder",
-		"dictionary",
-		""
+		"dictionary"
 	],
 	"authors" : [
 		{
