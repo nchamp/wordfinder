@@ -9,6 +9,9 @@ WORKDIR /usr/src/wordfinder
 # resolve composer dependencies
 RUN composer install --${COMPOSER_RESOLUTION_LEVEL}
 
+RUN apt-get update && \
+	apt-get install -y wbritish
+
 RUN rm -rf /app && \
 	ln -s /usr/src/wordfinder/www/ /app
 
